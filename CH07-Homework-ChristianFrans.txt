@@ -1,0 +1,95 @@
+#Q6 – Dice Roll Program
+import random
+
+def roll(number_of_throws):
+    results = []
+    for _ in range(number_of_throws):
+        results.append(random.randint(1, 6))
+    return sorted(results)
+
+num = int(input("Enter a positive integer: "))
+rolls = roll(num)
+print("Sorted rolls:", rolls)
+
+
+#Q7 – Driver’s License Exam Grader
+correct_answers = [
+    'A','C','A','A','D','B','C','A','C','B',
+    'A','D','C','A','D','C','B','B','D','A'
+]
+
+with open("student_answers.txt", "r") as file:
+    student_answers = [line.strip() for line in file]
+
+correct = 0
+incorrect_questions = []
+
+for i in range(20):
+    if student_answers[i] == correct_answers[i]:
+        correct += 1
+    else:
+        incorrect_questions.append(i + 1)
+
+if correct >= 15:
+    print("Student passed the exam.")
+else:
+    print("Student failed the exam.")
+
+print("Number of correct answers:", correct)
+print("Number of incorrect answers:", 20 - correct)
+print("Questions missed:", incorrect_questions)
+
+
+#Q8 – Popular Names Checker
+with open("BoyNames.txt", "r") as file:
+    boys = [name.strip() for name in file]
+
+with open("GirlNames.txt", "r") as file:
+    girls = [name.strip() for name in file]
+
+boy_name = input("Enter a boy's name (or press Enter to skip): ")
+girl_name = input("Enter a girl's name (or press Enter to skip): ")
+
+if boy_name:
+    if boy_name in boys:
+        print(boy_name, "is a popular boy's name.")
+    else:
+        print(boy_name, "is not a popular boy's name.")
+
+if girl_name:
+    if girl_name in girls:
+        print(girl_name, "is a popular girl's name.")
+    else:
+        print(girl_name, "is not a popular girl's name.")
+
+
+#Q9 – US Population Analysis
+with open("USPopulation.txt", "r") as file:
+    population = [int(line.strip()) for line in file]
+
+changes = []
+
+for i in range(1, len(population)):
+    changes.append(population[i] - population[i - 1])
+
+average_change = sum(changes) / len(changes)
+max_increase = max(changes)
+min_increase = min(changes)
+
+year_max = changes.index(max_increase) + 1951
+year_min = changes.index(min_increase) + 1951
+
+print("Average annual change:", round(average_change, 2))
+print("Year with greatest increase:", year_max)
+print("Year with smallest increase:", year_min)
+
+
+#Q10 – World Series Winners
+with open("WorldSeriesWinners.txt", "r") as file:
+    winners = [line.strip() for line in file]
+
+team = input("Enter a team name: ")
+
+count = winners.count(team)
+
+print(team, "won the World Series", count, "times between 1903 and 2009.")
