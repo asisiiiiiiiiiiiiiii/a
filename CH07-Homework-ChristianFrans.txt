@@ -11,7 +11,7 @@ num = int(input("Enter a positive integer: "))
 rolls = roll(num)
 print("Sorted rolls:", rolls)
 
-
+ 
 #Q7 – Driver’s License Exam Grader
 correct_answers = [
     'A','C','A','A','D','B','C','A','C','B',
